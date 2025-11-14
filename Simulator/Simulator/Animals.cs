@@ -31,4 +31,3 @@ public class Animals
 
     public string Info => $"{Description} <{Size}>";
 }
-

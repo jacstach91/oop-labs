@@ -13,21 +13,19 @@ public class Creature
         get => _name;
         set
         {
-            // można nadać tylko raz
-            if (_nameSet) return;
+            if (_nameSet) return;  // można ustawić tylko raz
             _nameSet = true;
 
             string s = value?.Trim() ?? "";
 
-            // min 3 znaki
+            // minimum 3 znaki
             if (s.Length < 3)
                 s = s.PadRight(3, '#');
 
-            // max 25 znaków
+            // maks 25 znaków
             if (s.Length > 25)
                 s = s[..25].TrimEnd();
 
-            // po przycięciu znów min 3
             if (s.Length < 3)
                 s = s.PadRight(3, '#');
 
@@ -44,11 +42,9 @@ public class Creature
         get => _level;
         set
         {
-            // można nadać tylko raz
-            if (_levelSet) return;
+            if (_levelSet) return; // można ustawić tylko raz
             _levelSet = true;
 
-            // zakres 1–10
             if (value < 1) value = 1;
             if (value > 10) value = 10;
 
@@ -64,17 +60,33 @@ public class Creature
         Level = level;
     }
 
-    public void SayHi()
-    {
+    public void SayHi() =>
         Console.WriteLine($"Hi! I'm {Name}, level {Level}!");
-    }
 
     public string Info => $"{Name} <{Level}>";
 
-    // upgrade max do 10
     public void Upgrade()
     {
-        if (_level < 10)
-            _level++;
+        if (_level < 10) _level++;
+    }
+
+    // -------- Kierunki --------
+
+    public void Go(Direction d)
+    {
+        string dir = d.ToString().ToLower();
+        Console.WriteLine($"{Name} goes {dir}.");
+    }
+
+    public void Go(Direction[] directions)
+    {
+        foreach (var d in directions)
+            Go(d);
+    }
+
+    public void Go(string s)
+    {
+        Direction[] dirs = DirectionParser.Parse(s);
+        Go(dirs);
     }
 }
