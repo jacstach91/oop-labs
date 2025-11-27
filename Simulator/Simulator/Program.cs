@@ -11,8 +11,28 @@ class Program
         //TestCreatures();
         Console.WriteLine("\n---------------------------------------\n");
         //TestDirections();
+        TestElfsAndOrcs();
+        TestValidators();
+        //TestCreatures();
+
     }
 
+    static void TestValidators()
+    {
+        Console.WriteLine("\nVALIDATORS TEST\n");
+
+        var a = new Animals() { Description = "dogs", Size = 3 };
+        Console.WriteLine(a.Info);
+
+        var b = new Animals() { Description = "Mice           are great", Size = 40 };
+        Console.WriteLine(b.Info);
+
+        var elf = new Elf("e", 15, -3); // level 15 -> limiter -> 10, agility -3 -> 0
+        Console.WriteLine($"{elf.Name}, L={elf.Level}, A={elf.Agility}");
+
+        var orc = new Orc("morgash", 6, 4);
+        Console.WriteLine($"{orc.Name}, L={orc.Level}, R={orc.Rage}");
+    }
     static void TestElfsAndOrcs()
     {
         Console.WriteLine("HUNT TEST\n");

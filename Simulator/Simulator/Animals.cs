@@ -9,20 +9,7 @@ public class Animals
         get => _description;
         init
         {
-            string s = value?.Trim() ?? "";
-
-            if (s.Length < 3)
-                s = s.PadRight(3, '#');
-
-            if (s.Length > 15)
-                s = s[..15].TrimEnd();
-
-            if (s.Length < 3)
-                s = s.PadRight(3, '#');
-
-            if (char.IsLetter(s[0]) && char.IsLower(s[0]))
-                s = char.ToUpper(s[0]) + s[1..];
-
+            string s = Validator.Shortener(value, 3, 15, '#');
             _description = s;
         }
     }

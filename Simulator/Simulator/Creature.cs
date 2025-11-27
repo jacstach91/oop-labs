@@ -13,26 +13,10 @@ public abstract class Creature
         get => _name;
         set
         {
-            if (_nameSet) return;  // można ustawić tylko raz
+            if (_nameSet) return;
             _nameSet = true;
 
-            string s = value?.Trim() ?? "";
-
-            // minimum 3 znaki
-            if (s.Length < 3)
-                s = s.PadRight(3, '#');
-
-            // maks 25 znaków
-            if (s.Length > 25)
-                s = s[..25].TrimEnd();
-
-            if (s.Length < 3)
-                s = s.PadRight(3, '#');
-
-            // pierwsza litera wielka
-            if (char.IsLetter(s[0]) && char.IsLower(s[0]))
-                s = char.ToUpper(s[0]) + s[1..];
-
+            string s = Validator.Shortener(value, 3, 25, '#');
             _name = s;
         }
     }
@@ -42,13 +26,10 @@ public abstract class Creature
         get => _level;
         set
         {
-            if (_levelSet) return; // można ustawić tylko raz
+            if (_levelSet) return;
             _levelSet = true;
 
-            if (value < 1) value = 1;
-            if (value > 10) value = 10;
-
-            _level = value;
+            _level = Validator.Limiter(value, 1, 10);
         }
     }
 
@@ -60,10 +41,8 @@ public abstract class Creature
         Level = level;
     }
 
-    // SayHi staje się abstrakcyjne (implementowane w klasach potomnych)
     public abstract void SayHi();
 
-    // pozostawiamy Info concrete na razie (zmiana na abstrakcyjne w commit 3)
     public string Info => $"{Name} <{Level}>";
 
     public void Upgrade()
@@ -71,7 +50,7 @@ public abstract class Creature
         if (_level < 10) _level++;
     }
 
-    // -------- Kierunki (bez zmian) --------
+    // Kierunki jak wcześniej...
 
     public void Go(Direction d)
     {
@@ -91,6 +70,5 @@ public abstract class Creature
         Go(dirs);
     }
 
-    // nowa abstrakcyjna właściwość tylko do odczytu
     public abstract int Power { get; }
 }

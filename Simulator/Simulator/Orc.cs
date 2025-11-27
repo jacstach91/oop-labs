@@ -5,19 +5,13 @@ public class Orc : Creature
     private int _rage = 0;
     private int _huntCount = 0;
 
-    public int Rage
-    {
-        get => _rage;
-        // ustawialne tylko przy tworzeniu przez konstruktor / object init
-    }
+    public int Rage => _rage;
 
     public Orc() : base("Orc", 1) { }
 
     public Orc(string name = "Orc", int level = 1, int rage = 0) : base(name, level)
     {
-        if (rage < 0) rage = 0;
-        if (rage > 10) rage = 10;
-        _rage = rage;
+        _rage = Validator.Limiter(rage, 0, 10);
     }
 
     public void Hunt()
@@ -26,10 +20,10 @@ public class Orc : Creature
         Console.WriteLine($"{Name} hunts (#{_huntCount}).");
         if (_huntCount % 2 == 0)
         {
-            if (_rage < 10)
+            int newR = Validator.Limiter(_rage + 1, 0, 10);
+            if (newR != _rage)
             {
-                _rage++;
-                if (_rage > 10) _rage = 10;
+                _rage = newR;
                 Console.WriteLine($"{Name}'s rage increased to {_rage}.");
             }
         }
