@@ -1,6 +1,6 @@
 ﻿namespace Simulator;
 
-public class Creature
+public abstract class Creature
 {
     private string _name = "Unknown";
     private bool _nameSet = false;
@@ -60,9 +60,10 @@ public class Creature
         Level = level;
     }
 
-    public void SayHi() =>
-        Console.WriteLine($"Hi! I'm {Name}, level {Level}!");
+    // SayHi staje się abstrakcyjne (implementowane w klasach potomnych)
+    public abstract void SayHi();
 
+    // pozostawiamy Info concrete na razie (zmiana na abstrakcyjne w commit 3)
     public string Info => $"{Name} <{Level}>";
 
     public void Upgrade()
@@ -70,7 +71,7 @@ public class Creature
         if (_level < 10) _level++;
     }
 
-    // -------- Kierunki --------
+    // -------- Kierunki (bez zmian) --------
 
     public void Go(Direction d)
     {
@@ -89,4 +90,7 @@ public class Creature
         Direction[] dirs = DirectionParser.Parse(s);
         Go(dirs);
     }
+
+    // nowa abstrakcyjna właściwość tylko do odczytu
+    public abstract int Power { get; }
 }
