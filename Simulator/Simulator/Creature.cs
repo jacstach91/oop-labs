@@ -15,7 +15,6 @@ public abstract class Creature
         {
             if (_nameSet) return;
             _nameSet = true;
-
             string s = Validator.Shortener(value, 3, 25, '#');
             _name = s;
         }
@@ -28,7 +27,6 @@ public abstract class Creature
         {
             if (_levelSet) return;
             _levelSet = true;
-
             _level = Validator.Limiter(value, 1, 10);
         }
     }
@@ -43,14 +41,13 @@ public abstract class Creature
 
     public abstract void SayHi();
 
-    public string Info => $"{Name} <{Level}>";
+    // Info staje się abstrakcy    czne (implementowane przez potomków)
+    public abstract string Info { get; }
 
     public void Upgrade()
     {
         if (_level < 10) _level++;
     }
-
-    // Kierunki jak wcześniej...
 
     public void Go(Direction d)
     {
@@ -71,4 +68,10 @@ public abstract class Creature
     }
 
     public abstract int Power { get; }
+
+    public override string ToString()
+    {
+        // nazwa typu obiektu (bez przestrzeni nazw) wielkimi literami
+        return $"{GetType().Name.ToUpper()}: {Info}";
+    }
 }

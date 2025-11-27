@@ -8,16 +8,30 @@ class Program
 
         TestElfsAndOrcs();
 
-        //TestCreatures();
+        
         Console.WriteLine("\n---------------------------------------\n");
-        //TestDirections();
         TestElfsAndOrcs();
         TestValidators();
-        //TestCreatures();
+        TestObjectsToString();
+        TestCreatures();
+        TestDirections();
 
     }
 
-    static void TestValidators()
+    static void TestObjectsToString()
+    {
+        object[] myObjects = {
+        new Animals() { Description = "dogs"},
+        new Birds { Description = "  eagles ", Size = 10 },
+        new Elf("e", 15, -3),
+        new Orc("morgash", 6, 4)
+    };
+        Console.WriteLine("\nMy objects:");
+        foreach (var o in myObjects) Console.WriteLine(o);
+    }
+        
+        static void TestValidators()
+      
     {
         Console.WriteLine("\nVALIDATORS TEST\n");
 
@@ -70,29 +84,31 @@ class Program
 
     // ... pozostałe metody TestCreatures() i TestDirections() pozostają bez zmian
     // (zawartość skopiowana z oryginalnego Program.cs)
-    /*static void TestCreatures()
+    static void TestCreatures()
     {
-        Creature c = new() { Name = "   Shrek    ", Level = 20 };
+        Console.WriteLine("\nCREATURES-LIKE TEST\n");
+
+        Creature c = new Elf("   Shrek    ", 20, 0);
         c.SayHi();
         c.Upgrade();
         Console.WriteLine(c.Info);
 
-        c = new("  ", -5);
+        c = new Orc("  ", -5, 0);
         c.SayHi();
         c.Upgrade();
         Console.WriteLine(c.Info);
 
-        c = new("  donkey ") { Level = 7 };
+        c = new Elf("  donkey ", 7, 1);
         c.SayHi();
         c.Upgrade();
         Console.WriteLine(c.Info);
 
-        c = new("Puss in Boots – a clever and brave cat.");
+        c = new Orc("Puss in Boots – a clever and brave cat.", 1, 0);
         c.SayHi();
         c.Upgrade();
         Console.WriteLine(c.Info);
 
-        c = new("a                            troll name", 5);
+        c = new Elf("a                            troll name", 5, 2);
         c.SayHi();
         c.Upgrade();
         Console.WriteLine(c.Info);
@@ -100,13 +116,15 @@ class Program
         var a = new Animals() { Description = "   Cats " };
         Console.WriteLine(a.Info);
 
-        a = new() { Description = "Mice           are great", Size = 40 };
+        a = new Animals() { Description = "Mice           are great", Size = 40 };
         Console.WriteLine(a.Info);
     }
 
     static void TestDirections()
     {
-        Creature c = new("Shrek", 7);
+        Console.WriteLine("\nDIRECTIONS TEST\n");
+
+        Creature c = new Elf("Shrek", 7, 1);
         c.SayHi();
 
         Console.WriteLine("\n* Up");
@@ -123,5 +141,5 @@ class Program
 
         Console.WriteLine("\n* xxxdR lyyLTyu");
         c.Go("xxxdR lyyLTyu");
-    }*/
+    }
 }
