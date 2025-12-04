@@ -17,19 +17,19 @@ public class Orc : Creature
     public void Hunt()
     {
         _huntCount++;
-        Console.WriteLine($"{Name} hunts (#{_huntCount}).");
+       
         if (_huntCount % 2 == 0)
         {
             int newR = Validator.Limiter(_rage + 1, 0, 10);
             if (newR != _rage)
             {
                 _rage = newR;
-                Console.WriteLine($"{Name}'s rage increased to {_rage}.");
+                
             }
         }
     }
 
-    public override void SayHi()
+    public override string Greeting()
     {
         Console.WriteLine($"Hi, I'm {Name} the Orc (level {Level}, rage {Rage}). Power: {Power}");
     }

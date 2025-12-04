@@ -17,19 +17,19 @@ public class Elf : Creature
     public void Sing()
     {
         _singCount++;
-        Console.WriteLine($"{Name} sings (#{_singCount}).");
+       
         if (_singCount % 3 == 0)
         {
             int newA = Validator.Limiter(_agility + 1, 0, 10);
             if (newA != _agility)
             {
                 _agility = newA;
-                Console.WriteLine($"{Name}'s agility increased to {_agility}.");
+              
             }
         }
     }
 
-    public override void SayHi()
+    public override string Greeting()
     {
         Console.WriteLine($"Hi, I'm {Name} the Elf (level {Level}, agility {Agility}). Power: {Power}");
     }

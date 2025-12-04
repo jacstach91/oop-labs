@@ -39,7 +39,7 @@ public abstract class Creature
         Level = level;
     }
 
-    public abstract void SayHi();
+    public abstract string Greeting();
 
     // Info staje się abstrakcy    czne (implementowane przez potomków)
     public abstract string Info { get; }
@@ -49,19 +49,15 @@ public abstract class Creature
         if (_level < 10) _level++;
     }
 
-    public void Go(Direction d)
-    {
-        string dir = d.ToString().ToLower();
-        Console.WriteLine($"{Name} goes {dir}.");
-    }
+    string Go(Direction direction) => $"{direction.ToString().ToLower()}";
 
-    public void Go(Direction[] directions)
+    string[] Go(Direction[] directions)
     {
         foreach (var d in directions)
             Go(d);
     }
 
-    public void Go(string s)
+    string[] Go(string s)
     {
         Direction[] dirs = DirectionParser.Parse(s);
         Go(dirs);

@@ -1,4 +1,6 @@
-﻿namespace Simulator;
+﻿using System;
+using Simulator;
+namespace Runner;
 
 class Program
 {
