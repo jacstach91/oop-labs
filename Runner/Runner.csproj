@@ -6,8 +6,9 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
-	<ItemGroup>
-		<ProjectReference Include="..\Simulator\Simulator.csproj" />
-	</ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Simulator\Simulator.csproj" />
+  </ItemGroup>
 
 </Project>
