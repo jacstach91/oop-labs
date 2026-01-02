@@ -29,9 +29,4 @@ public class SmallTorusMap : Map
 
         return new Point(x, y);
     }
-
-    public override Dictionary<Point, char> GetSymbols()
-    {
-        return new Dictionary<Point, char>(_symbols);
-    }
 }

@@ -38,7 +38,7 @@ namespace SimConsole
                     char c = ' ';
                     if (creatures != null && creatures.Count > 0)
                     {
-                        c = creatures.Count > 1 ? 'X' : creatures[0].MapSymbol;
+                        c = creatures.Count > 1 ? 'X' : creatures[0].Symbol;
                     }
                     Console.Write($"{c}{Box.Vertical}");
                 }
